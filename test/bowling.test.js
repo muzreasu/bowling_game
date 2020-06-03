@@ -76,10 +76,19 @@ describe('bowling scoring rules', () => {
     expect(calculateTotalScore(game)).toBe(76);
   });
 
-  test('should return 76 when calculate total score given ten rounds and the last round is spare such as [(1,4),(3,5),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(6,4,5)]', () => {
+  test('should return 72 when calculate total score given ten rounds and the last round is spare such as [(1,4),(3,5),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(6,4,5)]', () => {
     const game = cloneDeep(initialGame);
     game[9] = new Round(6,4, 5);
 
     expect(calculateTotalScore(game)).toBe(72);
+  });
+
+  test('should return 76 when calculate total score given ten rounds and have both strike and spare and the last round is spare such as [(10,0),(3,5),(4,6),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(6,4,5)]', () => {
+    const game = cloneDeep(initialGame);
+    game[0] = new Round(10,0, 0);
+    game[2] = new Round(4,6, 0);
+    game[9] = new Round(6,4, 5);
+
+    expect(calculateTotalScore(game)).toBe(89);
   });
 });
