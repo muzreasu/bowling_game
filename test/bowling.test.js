@@ -91,4 +91,14 @@ describe('bowling scoring rules', () => {
 
     expect(calculateTotalScore(game)).toBe(89);
   });
+
+  test('should return 112 when calculate total score given ten rounds and have both strike and spare and the last round is strike such as [(10,0),(3,5),(4,6),(2,3),(1,4),(1,4),(3,5),(4,4),(10,0),(10,4,5)]', () => {
+    const game = cloneDeep(initialGame);
+    game[0] = new Round(10,0, 0);
+    game[2] = new Round(4,6, 0);
+    game[8] = new Round(10,0, 0);
+    game[9] = new Round(10,4, 5);
+
+    expect(calculateTotalScore(game)).toBe(112);
+  });
 });
