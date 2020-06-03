@@ -75,4 +75,11 @@ describe('bowling scoring rules', () => {
 
     expect(calculateTotalScore(game)).toBe(76);
   });
+
+  test('should return 76 when calculate total score given ten rounds and the last round is spare such as [(1,4),(3,5),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(6,4,5)]', () => {
+    const game = cloneDeep(initialGame);
+    game[9] = new Round(6,4, 5);
+
+    expect(calculateTotalScore(game)).toBe(72);
+  });
 });
