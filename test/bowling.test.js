@@ -56,4 +56,16 @@ describe('bowling scoring rules', () => {
 
     expect(calculateTotalScore(game)).toBe(79);
   });
+
+  test('should return 79 when calculate total score given ten rounds are all spare such as [(1,9),(2,8),(6,4),(1,9),(2,8),(6,4),(1,9),(2,8),(6,4),(3,7,10)]', () => {
+    const game = [];
+    for (let i = 0; i < 3; i++) {
+      game.push(new Round(1, 9, 0));
+      game.push(new Round(2, 8, 0));
+      game.push(new Round(6, 4, 0));
+    }
+    game.push(new Round(3, 7, 10));
+
+    expect(calculateTotalScore(game)).toBe(139);
+  });
 });
