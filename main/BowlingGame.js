@@ -7,6 +7,10 @@ export class Round {
     this.thirdScore = thirdScore;
   }
 
+  isStrike() {
+    return this.firstScore === ROUND_FULL_SCORE;
+  }
+
   getTotalScore() {
     return this.firstScore + this.secondScore;
   }
@@ -24,7 +28,13 @@ export const calculateTotalScore = (game) => {
 
   for (let i = 0; i < 10; i++) {
     const isSpare = game[i].getTotalScore() === ROUND_FULL_SCORE;
-    if (isSpare) {
+    if (game[i].isStrike()) {
+      if (game[i + 1].isStrike()) {
+        totalScore += ROUND_FULL_SCORE * 2 + game[i + 2].firstScore;
+      } else {
+        totalScore += ROUND_FULL_SCORE + game[i + 1].firstScore + game[i + 1].secondScore;
+      }
+    } else if (isSpare) {
       if (i === 9 && game[i].thirdScore !== 0) {
         totalScore += ROUND_FULL_SCORE + game[i].thirdScore;
       } else {

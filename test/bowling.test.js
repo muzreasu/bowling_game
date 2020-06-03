@@ -33,4 +33,19 @@ describe('bowling scoring rules', () => {
 
     expect(calculateTotalScore(game)).toBe(70);
   });
+
+  test('should return 75 when calculate total score given ten rounds are [(10,0),(3,5),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(1,4)]', () => {
+    const game = cloneDeep(initialGame);
+    game[0] = new Round(10, 0);
+
+    expect(calculateTotalScore(game)).toBe(75);
+  });
+
+  test('should return 91 when calculate total score given ten rounds are [(10,0),(10,0),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(1,4)]', () => {
+    const game = cloneDeep(initialGame);
+    game[0] = new Round(10, 0);
+    game[1] = new Round(10, 0);
+
+    expect(calculateTotalScore(game)).toBe(91);
+  });
 });
