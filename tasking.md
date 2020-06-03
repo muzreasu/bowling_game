@@ -28,7 +28,7 @@
    
 8. Given ten rounds and the last round is spare such as [(1,4),(3,5),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(6,4,5)];
    When calculate total score;
-   Then the score should be 71.
+   Then the score should be 72.
    
 9. Given ten rounds have both strike and spare and the last round is spare such as [(10,0),(3,5),(4,6),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(6,4,5)];
    When calculate total score;
