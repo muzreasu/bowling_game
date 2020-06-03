@@ -16,6 +16,10 @@ export class Round {
   }
 }
 
+export const calculateLastRound = (game) => {
+  return game.firstScore + game.secondScore + game.thirdScore;
+};
+
 export const calculateTotalScore = (game) => {
   let lastRound = game[game.length - 1];
   let totalScore = 0;
@@ -26,7 +30,7 @@ export const calculateTotalScore = (game) => {
       .reduce((accumulateScore, currentScore) => accumulateScore + currentScore * 3) + lastRound.secondScore + lastRound.thirdScore;
   }
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 9; i++) {
     const isSpare = game[i].getTotalScore() === ROUND_FULL_SCORE;
     if (game[i].isStrike()) {
       if (game[i + 1].isStrike()) {
@@ -35,14 +39,12 @@ export const calculateTotalScore = (game) => {
         totalScore += ROUND_FULL_SCORE + game[i + 1].firstScore + game[i + 1].secondScore;
       }
     } else if (isSpare) {
-      if (i === 9 && game[i].thirdScore !== 0) {
-        totalScore += ROUND_FULL_SCORE + game[i].thirdScore;
-      } else {
         totalScore += ROUND_FULL_SCORE + game[i + 1].firstScore;
-      }
     } else {
       totalScore += game[i].getTotalScore();
     }
   }
+
+  totalScore += calculateLastRound(lastRound);
   return totalScore;
 };

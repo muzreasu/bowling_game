@@ -68,4 +68,11 @@ describe('bowling scoring rules', () => {
 
     expect(calculateTotalScore(game)).toBe(139);
   });
+
+  test('should return 76 when calculate total score given last round is strike such as [(1,4),(3,5),(4,4),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(10,4,5)]', () => {
+    const game = cloneDeep(initialGame);
+    game[9] = new Round(10,4, 5);
+
+    expect(calculateTotalScore(game)).toBe(76);
+  });
 });
