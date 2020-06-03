@@ -48,4 +48,12 @@ describe('bowling scoring rules', () => {
 
     expect(calculateTotalScore(game)).toBe(91);
   });
+
+  test('should return 79 when calculate total score given ten rounds have both strike and spare such as [(10,0),(3,5),(4,6),(2,3),(1,4),(1,4),(3,5),(4,4),(2,3),(1,4)]', () => {
+    const game = cloneDeep(initialGame);
+    game[0] = new Round(10, 0);
+    game[2] = new Round(4, 6);
+
+    expect(calculateTotalScore(game)).toBe(79);
+  });
 });
